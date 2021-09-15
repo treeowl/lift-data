@@ -1,5 +1,5 @@
 name:                lift-data
-version:             0.2
+version:             0.1.0
 synopsis:            Data.Data-based Language.Haskell.TH.Syntax.lift implementation
 description:         This package provides a "Data.Data"-based @genericLift@
                      function along with typed variants. See the
