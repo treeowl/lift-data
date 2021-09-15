@@ -1,0 +1,71 @@
+name:                lift-data
+version:             0.2
+synopsis:            Data.Data-based Language.Haskell.TH.Syntax.lift implementation
+description:         This package provides a "Data.Data"-based @genericLift@
+                     function along with typed variants. See the
+                     documentation in the "Language.Haskell.TH.Lift.Data"
+                     module to get started.
+                     .
+                     This is based on the @lift-generics@ package.
+                     .
+                     Note that due to API limitations, "Data.Data" and "Data.Typeable"
+                     weren't powerful enough to come up with the entirety of a `lift`
+                     implementation prior to GHC 7.4. Thanks to a bug in many recent
+                     GHC versions, there is no practical way to offer a fall-back
+                     API as is found in @lift-generics@.
+homepage:            https://github.com/treeowl/lift-data
+bug-reports:         https://github.com/treeowl/lift-data/issues
+license:             BSD3
+license-file:        LICENSE
+author:              David Feuer
+maintainer:          David Feuer <David.Feuer@gmail.com>
+stability:           Experimental
+copyright:           (C) 2015-2017 Ryan Scott, (C) 2021 David Feuer
+category:            Language
+build-type:          Simple
+tested-with:
+                     GHC == 7.4.2
+                   , GHC == 7.6.3
+                   , GHC == 7.8.4
+                   , GHC == 7.10.3
+                   , GHC == 8.0.2
+                   , GHC == 8.2.2
+                   , GHC == 8.4.4
+                   , GHC == 8.6.5
+                   , GHC == 8.8.4
+                   , GHC == 8.10.4
+                   , GHC == 9.0.1
+extra-source-files:  CHANGELOG.md, README.md
+cabal-version:       >=1.10
+
+source-repository head
+  type:                git
+  location:            https://github.com/treeowl/lift-data
+
+library
+  exposed-modules:     Language.Haskell.TH.Lift.Data
+  build-depends:       base             >= 4.5 && < 5
+                     , ghc-prim
+                     , template-haskell >= 2.4 && < 2.18
+                     , th-compat        >= 0.1 && < 0.2
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+  ghc-options:         -Wall
+
+test-suite spec
+  type:                exitcode-stdio-1.0
+  main-is:             Spec.hs
+  other-modules:       LiftDataSpec
+                       Types
+                       Paths_lift_data
+  build-depends:       base             >= 4.5   && < 5
+                     , base-compat      >= 0.8.2 && < 1
+                     , hspec            >= 2     && < 3
+                     , lift-data
+                     , mtl              >= 2.1   && < 2.3
+                     , template-haskell >= 2.4   && < 2.18
+                     , th-compat        >= 0.1   && < 0.2
+  build-tool-depends:  hspec-discover:hspec-discover
+  hs-source-dirs:      tests
+  default-language:    Haskell2010
+  ghc-options:         -Wall -threaded -rtsopts
